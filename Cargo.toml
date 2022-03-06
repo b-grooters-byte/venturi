@@ -1,0 +1,11 @@
+[package]
+name = "venturi"
+version = "0.1.2"
+edition = "2021"
+
+
+[dependencies]
+ndarray = "0.15"
+rand = "0.8"
+byteorder= "1.4"
+structopt = "0.3.25"
