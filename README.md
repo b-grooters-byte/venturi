@@ -1,5 +1,5 @@
 
-#Venturi
+# Venturi
 Venturi is a lightweight, configurable neural net library developed using Rust. 
 The library has been developed to provide a starting point for adding basic AI
 capabilities to low-cost embedded systems.
