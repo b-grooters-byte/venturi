@@ -49,8 +49,10 @@ struct Options {
     network_file: Option<String>,
     #[structopt(short, long, required_if("mode", "query"))]
     input_file: Option<String>,
-    #[structopt(short, long)]
+    #[structopt(short, long, required_if("mode", "train"))]
     training_data: Option<String>,
+    #[structopt(short="I", long="input-nodes", required_if("mode", "train"))]
+    input_nodes: usize,
     #[structopt(short, long)]
     output: Option<String>,
     #[structopt(short, long)]
@@ -67,7 +69,7 @@ fn main() -> std::io::Result<()> {
             let file = File::open(filename)?;
             let buf_reader = BufReader::new(file);
             let lines = buf_reader.lines();
-            let mut network = Network::new(784, 100, 10, 0.3, sigmoid);
+            let mut network = Network::new(opt.input_nodes, 100, 10, 0.3, sigmoid);
             for line in lines {
                 let l = line.unwrap();
                 let mut str_values = l.split(',');
@@ -138,3 +140,4 @@ fn main() -> std::io::Result<()> {
     }
     Ok(())
 }
+
