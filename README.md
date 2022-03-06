@@ -1,4 +1,5 @@
-![Build](https://github.com/bytetrail/venturi/workflows/rust-build/badge.svg)
+![Build](https://github.com/bytetrail/venturi/.github/workflows/rust-build.yml/badge.svg)
+
 # Venturi
 Venturi is a lightweight, configurable neural net library developed using Rust. 
 The library has been developed to provide a starting point for adding basic AI
