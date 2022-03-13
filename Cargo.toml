@@ -1,7 +1,11 @@
 [package]
 name = "venturi"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
+
+[features]
+# defines that benchmark tests be included in the build, required unstable channel
+benchmark = []
 
 
 [dependencies]
