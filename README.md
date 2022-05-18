@@ -16,6 +16,12 @@ both in the book and to exercise the original Rust implementation of the neural
 net. Small samples of the MNIST database are included that can be used both
 for training and query experiments.
 
+# Embedded 
+Venturi is currently using capabilities that would typically require a hosted 
+environment. Future development will support a ```#![no_std]``` option for bare 
+metal environments. See [Rust Embedded](https://docs.rust-embedded.org/book/intro/no-std.html) 
+for additional information.
+
 # Benchmark
 The project includes a simple baseline benchmark of the training method using a 
 fixed dataset. The benchmark feature needs to be enabled to run the tests and
