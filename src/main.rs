@@ -2,7 +2,7 @@ use ndarray::{Array, ShapeBuilder};
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::{fmt, str::FromStr};
-use structopt::StructOpt;
+use clap::Parser;
 use venturi::{sigmoid, BytesDeserialize, BytesSerialize, Network};
 
 #[derive(Debug)]
@@ -41,25 +41,25 @@ impl FromStr for Mode {
     }
 }
 
-#[derive(Debug, StructOpt)]
-struct Options {
-    #[structopt(short, long)]
+#[derive(Debug, Parser)]
+struct Args {
+    #[clap(short, long)]
     mode: Mode,
-    #[structopt(short, long, required_if("mode", "query"))]
+    #[clap(short, long, required_if("mode", "query"))]
     network_file: Option<String>,
-    #[structopt(short, long, required_if("mode", "query"))]
+    #[clap(short, long, required_if("mode", "query"))]
     input_file: Option<String>,
-    #[structopt(short="I", long, required_if("mode", "train"))]
+    #[clap(short="I", long, required_if("mode", "train"))]
     input_node_count: usize,
-    #[structopt(short="H", long, required_if("mode", "train"))]
+    #[clap(short="H", long, required_if("mode", "train"))]
     hidden_node_count: usize,
-    #[structopt(short="O", long, required_if("mode", "train"))]
+    #[clap(short="O", long, required_if("mode", "train"))]
     output_node_count: usize,
-    #[structopt(short, long)]
+    #[clap(short, long)]
     training_data: Option<String>,
-    #[structopt(short, long)]
+    #[clap(short, long)]
     output: Option<String>,
-    #[structopt(short, long)]
+    #[clap(short, long)]
     show_training: bool,
 }
 
