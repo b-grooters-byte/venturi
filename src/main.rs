@@ -45,15 +45,15 @@ impl FromStr for Mode {
 struct Args {
     #[clap(short, long)]
     mode: Mode,
-    #[clap(short, long, required_if("mode", "query"))]
+    #[clap(short, long, required_if_eq("mode", "query"))]
     network_file: Option<String>,
-    #[clap(short, long, required_if("mode", "query"))]
+    #[clap(short, long, required_if_eq("mode", "query"))]
     input_file: Option<String>,
-    #[clap(short="I", long, required_if("mode", "train"))]
+    #[clap(short='I', long, required_if_eq("mode", "train"))]
     input_node_count: usize,
-    #[clap(short="H", long, required_if("mode", "train"))]
+    #[clap(short='H', long, required_if_eq("mode", "train"))]
     hidden_node_count: usize,
-    #[clap(short="O", long, required_if("mode", "train"))]
+    #[clap(short='O', long, required_if_eq("mode", "train"))]
     output_node_count: usize,
     #[clap(short, long)]
     training_data: Option<String>,
@@ -64,7 +64,7 @@ struct Args {
 }
 
 fn main() -> std::io::Result<()> {
-    let opt = Options::from_args();
+    let opt = Args::parse();
     println!("Venturi Nueral Netowrk");
     match opt.mode {
         Mode::Train => {
