@@ -41,6 +41,8 @@ impl FromStr for Mode {
     }
 }
 
+impl std::error::Error for ParseErr {}
+
 #[derive(Debug, Parser)]
 struct Args {
     #[clap(short, long)]
