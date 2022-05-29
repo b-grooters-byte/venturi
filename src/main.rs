@@ -67,7 +67,7 @@ struct Args {
 
 fn main() -> std::io::Result<()> {
     let opt = Args::parse();
-    println!("Venturi Nueral Netowrk");
+    println!("Venturi Nueral Network");
     match opt.mode {
         Mode::Train => {
             let filename = opt.training_data.unwrap();
