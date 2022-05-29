@@ -33,7 +33,7 @@ impl FromStr for Mode {
     /// * "query"
     /// this is case sensitive. The input string must be all lowercase.
     fn from_str(mode_str: &str) -> Result<Self, <Self as FromStr>::Err> {
-        match mode_str {
+        match &*mode_str.to_lowercase() {
             "train" => Ok(Mode::Train),
             "query" => Ok(Mode::Query),
             _ => Err(ParseErr {}),
