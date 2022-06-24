@@ -44,30 +44,36 @@ impl FromStr for Mode {
 impl std::error::Error for ParseErr {}
 
 #[derive(Debug, Parser)]
+#[clap(version, about="Venturi is a lightweight, configurable neural net library.")]
 struct Args {
+    ///train or query
     #[clap(short, long)]
     mode: Mode,
+    ///Load the network
     #[clap(short, long, required_if_eq("mode", "query"))]
     network_file: Option<String>,
+    ///Sets the input file to used in query mode
     #[clap(short, long, required_if_eq("mode", "query"))]
     input_file: Option<String>,
-    #[clap(short='I', long, required_if_eq("mode", "train"))]
+    #[clap(short='I', long, required_if_eq("mode", "train"), )]
     input_node_count: usize,
     #[clap(short='H', long, required_if_eq("mode", "train"))]
     hidden_node_count: usize,
     #[clap(short='O', long, required_if_eq("mode", "train"))]
     output_node_count: usize,
+    ///Training mode
     #[clap(short, long)]
     training_data: Option<String>,
+    ///Create a binary file of the trained network
     #[clap(short, long)]
-    output: Option<String>,
+    output_file: Option<String>,
     #[clap(short, long)]
     show_training: bool,
 }
 
 fn main() -> std::io::Result<()> {
     let opt = Args::parse();
-    println!("Venturi Nueral Network");
+    println!("Venturi Neural Network");
     match opt.mode {
         Mode::Train => {
             let filename = opt.training_data.unwrap();
@@ -114,9 +120,9 @@ fn main() -> std::io::Result<()> {
                 }
             }
             // check for output file
-            if let Some(file) = opt.output {
-                let mut output = std::fs::File::create(file).expect("create failed");
-                network.to_bytes(&mut output);
+            if let Some(file) = opt.output_file {
+                let mut output_file = std::fs::File::create(file).expect("create failed");
+                network.to_bytes(&mut output_file);
             }
         }
         Mode::Query => {
